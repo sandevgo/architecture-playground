@@ -21,7 +21,7 @@ Before you begin exploring and testing architectural patterns and use cases in t
 
 ## Architectural Patterns
 
-- [Leader Based Replication](./database/postgres/README.md) (Postgres)
+- [Leader Based Replication](./db/postgres/README.md) (Postgres)
 
 ## Use Cases
 
