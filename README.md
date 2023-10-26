@@ -22,7 +22,8 @@ Before you begin exploring and testing architectural patterns and use cases in t
 ## Architectural Patterns
 
 - [Leader Based Replication](./db/postgres/README.md) (Postgres)
-- [Load Balancing](./lb/haproxy/README.md) (HAProxy)
+- [Load Balancing (HAProxy)](./lb/haproxy/README.md)
+- [Load Balancing (Envoy)](./lb/envoy/README.md)
 
 ## Use Cases
 
