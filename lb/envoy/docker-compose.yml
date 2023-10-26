@@ -1,0 +1,47 @@
+services:
+  envoy:
+    image: envoyproxy/envoy:distroless-v1.28.0
+    container_name: envoy
+    volumes:
+      - ./envoy-config.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    networks:
+      - playground-network
+    depends_on:
+      - app1
+      - app2
+    links:
+      - app1
+      - app2
+
+  app1:
+    image: nginx:alpine
+    container_name: app1
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8081:80"
+    networks:
+      playground-network:
+        ipv4_address: "10.0.0.23"
+
+  app2:
+    image: nginx:alpine
+    container_name: app2
+    ports:
+      - "8082:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      playground-network:
+        ipv4_address: "10.0.0.24"
+
+networks:
+  playground-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16
+          gateway: 10.0.0.1
